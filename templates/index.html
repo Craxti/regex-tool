@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% endblock head_title %}
+
+{% block content %}
+    <div id="main" class="container">
+        <div id="regex">
+            <form class="my-3"
+                  hx-post="{% url "core:matches" %}"
+                  hx-trigger="keyup"
+                  hx-target="#text-and-matches">
+                <label for="pattern" class="form-label my-3">{% translate "Regular expression" %}</label>
+                <input type="text" class="form-control" id="pattern" name="pattern" value="{{ pattern }}">
+            </form>
+        </div>
+
+        <div id="text-and-matches">
+            {% include "matches.html" %}
+        </div>
+    </div>
+{% endblock content %}
